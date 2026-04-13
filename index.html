@@ -76,7 +76,6 @@ button{font-family:'Lato',sans-serif;cursor:pointer;border-radius:8px}
 .modal-ttl.dng{color:#ff9090}
 .modal-txt{font-family:'Lato',sans-serif;font-size:13px;color:#e0c8ff;margin-bottom:1rem;line-height:1.6}
 .modal-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:.75rem}
-/* tab toggle */
 .ob-tabs{display:flex;gap:0;margin-bottom:1.25rem;border:2px solid #5b2d9e;border-radius:8px;overflow:hidden}
 .ob-tab{flex:1;background:#160840;color:#a080c0;border:none;padding:9px 8px;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:background .15s,color .15s}
 .ob-tab:first-child{border-right:1px solid #5b2d9e}
@@ -86,16 +85,19 @@ button{font-family:'Lato',sans-serif;cursor:pointer;border-radius:8px}
 .field-label{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:2px;color:#ff9800;text-transform:uppercase;margin-bottom:5px}
 .field-wrap{margin-bottom:.9rem}
 .vibe-preview{background:#160840;border:1px solid #5b2d9e;border-radius:8px;padding:10px 12px;font-family:'Lato',sans-serif;font-size:13px;color:#e0c8ff;margin-top:.5rem;min-height:38px;display:flex;align-items:center;gap:8px}
-.vibe-preview .vibe-em{font-size:18px}
+.vibe-em{font-size:18px}
 .vibe-placeholder{color:#7a5a9a;font-style:italic}
 .results-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:8px}
 .results-ttl{font-family:'Alfa Slab One',serif;font-size:22px;color:#ffe040;text-shadow:2px 2px 0 #ff6b00;text-transform:uppercase;letter-spacing:1px}
 .results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
 .city-card{background:#2a1060;border:2px solid #5b2d9e;border-radius:12px;padding:1.25rem;text-align:center}
-.city-sign{display:inline-block;background:#0a4a1a;border:3px solid #ffe040;border-radius:8px;padding:8px 14px;margin-bottom:1rem}
-.sign-top{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:3px;color:#90e890;text-transform:uppercase;margin-bottom:2px}
-.sign-name{font-family:'Alfa Slab One',serif;font-size:14px;color:#ffe040;line-height:1.3}
-.sign-inner{border:1.5px solid #ffe040;padding:4px 10px;margin-top:3px}
+.city-sign{display:inline-block;background:#0a4a1a;border:3px solid #ffe040;border-radius:8px;padding:8px 14px;margin-bottom:.75rem}
+.sign-top{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:3px;color:#90e890;text-transform:uppercase;margin-bottom:4px}
+.sign-inner{border:1.5px solid #ffe040;padding:6px 10px;margin-top:3px}
+.sign-line{display:block;font-family:'Alfa Slab One',serif;color:#ffe040;line-height:1.25}
+.sign-line.sm{font-size:11px;opacity:.85}
+.sign-line.md{font-size:13px}
+.sign-line.lg{font-size:15px}
 .player-lbl{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:2px;color:#d0b0f0;text-transform:uppercase;margin-bottom:.75rem}
 .pick-row{display:flex;align-items:center;gap:7px;padding:6px 0;border-bottom:1px solid #3d1a80;font-family:'Lato',sans-serif;font-size:13px;color:#f0e0ff;text-align:left}
 .pick-row:last-child{border-bottom:none}
@@ -161,11 +163,15 @@ button{font-family:'Lato',sans-serif;cursor:pointer;border-radius:8px}
 </div>
 
 <script>
-const SUFFIXES=["City","Town","Ville","bury","borough","Falls","Springs","Grove","Hills","Junction","Park","Ridge","Bay","Pines","Crossing"];
+const SUFFIXES=[
+  "City","Town","Falls","Springs","Grove","Hills",
+  "Junction","Park","Ridge","Bay","Pines","Crossing",
+  "Lake","Beach","Valley","Heights","Station","Meadows"
+];
+
 const AV_BG=["#b33000","#005a8c","#1a6b1a","#7b006b","#7a5a00","#006060","#4a0090","#554400"];
 const AV_FG=["#ffd0b0","#b0e4ff","#c0ffc0","#ffb0f8","#ffe090","#b0ffff","#e8c0ff","#ffe8a0"];
 const BULB_COLS=["y","p","b","o","y","b","p","o","y","p","b","o","y","b","p","o"];
-
 const CUISINES=[
   {label:"American",e:"🍔"},{label:"BBQ",e:"🍖"},{label:"Breakfast",e:"🥞"},
   {label:"Burgers",e:"🍔"},{label:"Chinese",e:"🥡"},{label:"Dessert / Ice Cream",e:"🍨"},
@@ -177,7 +183,6 @@ const CUISINES=[
   {label:"Teppanyaki",e:"🔥"},{label:"Thai",e:"🍜"},{label:"Vietnamese",e:"🍲"},
   {label:"Wings",e:"🍗"},{label:"Other",e:"🍽️"},
 ];
-
 const FORMATS=[
   {label:"Fast food",e:"🚗"},{label:"Fast casual",e:"🥗"},
   {label:"Casual dining",e:"🍻"},{label:"Fine dining",e:"🕯️"},
@@ -185,7 +190,6 @@ const FORMATS=[
   {label:"Café / Coffee shop",e:"☕"},{label:"Bakery",e:"🥐"},
   {label:"Bar & Grill",e:"🍺"},{label:"Dessert shop",e:"🍰"},
 ];
-
 const RESTAURANTS=[
   {name:"McDonald's",e:"🍔"},{name:"Chick-fil-A",e:"🐔"},{name:"Starbucks",e:"☕"},
   {name:"Subway",e:"🥖"},{name:"Chipotle",e:"🌯"},{name:"Taco Bell",e:"🌮"},
@@ -302,100 +306,80 @@ function pick(i){
 
 function openOB(){
   const pi=draftOrder[curIdx];if(usedOB[pi])return;
-
-  const cuisineOpts=CUISINES.map(c=>`<option value="${esc(c.label)}" data-e="${c.e}">${c.e} ${esc(c.label)}</option>`).join("");
-  const formatOpts=FORMATS.map(f=>`<option value="${esc(f.label)}" data-e="${f.e}">${f.e} ${esc(f.label)}</option>`).join("");
-
+  const cuisineOpts=CUISINES.map(c=>`<option value="${esc(c.label)}">${c.e} ${esc(c.label)}</option>`).join("");
+  const formatOpts=FORMATS.map(f=>`<option value="${esc(f.label)}">${f.e} ${esc(f.label)}</option>`).join("");
   document.getElementById("modal-area").innerHTML=`
     <div class="modal-bd" role="dialog" aria-modal="true" aria-labelledby="ob-title">
       <div class="modal-box">
         <div class="modal-ttl" id="ob-title">Off-the-board pick!</div>
         <div class="modal-txt">Name a specific restaurant, or describe the type of place you want.</div>
-
         <div class="ob-tabs" role="tablist">
           <button class="ob-tab active" id="tab-name" role="tab" aria-selected="true" aria-controls="panel-name" onclick="switchTab('name')">Specific place</button>
           <button class="ob-tab" id="tab-vibe" role="tab" aria-selected="false" aria-controls="panel-vibe" onclick="switchTab('vibe')">Build a vibe</button>
         </div>
-
         <div id="panel-name" class="ob-panel active" role="tabpanel" aria-labelledby="tab-name">
           <div class="field-label">Restaurant name</div>
           <input type="text" id="ob-name-inp" placeholder="e.g. Buc-ee's, Roscoe's Chicken &amp; Waffles…" maxlength="50" aria-required="true">
         </div>
-
         <div id="panel-vibe" class="ob-panel" role="tabpanel" aria-labelledby="tab-vibe">
           <div class="field-wrap">
             <label class="field-label" for="ob-cuisine">Cuisine</label>
             <select id="ob-cuisine" onchange="updateVibePreview()">
-              <option value="">— choose a cuisine —</option>
-              ${cuisineOpts}
+              <option value="">— choose a cuisine —</option>${cuisineOpts}
             </select>
           </div>
           <div class="field-wrap">
             <label class="field-label" for="ob-format">Format</label>
             <select id="ob-format" onchange="updateVibePreview()">
-              <option value="">— choose a format —</option>
-              ${formatOpts}
+              <option value="">— choose a format —</option>${formatOpts}
             </select>
           </div>
           <div class="field-label">Preview</div>
-          <div class="vibe-preview" id="vibe-preview" aria-live="polite">
-            <span class="vibe-placeholder">Choose cuisine and format above</span>
-          </div>
+          <div class="vibe-preview" id="vibe-preview" aria-live="polite"><span class="vibe-placeholder">Choose cuisine and/or format above</span></div>
         </div>
-
         <div class="modal-btns">
           <button class="btn-sec" onclick="closeModal()">Cancel</button>
           <button class="btn-main" id="ob-ok" onclick="confirmOB()" disabled style="background:#7b00d4">Confirm pick!</button>
         </div>
       </div>
     </div>`;
-
-  const nameInp=document.getElementById("ob-name-inp");
-  nameInp.addEventListener("input",updateOBConfirm);
-  nameInp.addEventListener("keydown",e=>{if(e.key==="Enter")confirmOB();if(e.key==="Escape")closeModal();});
-  setTimeout(()=>nameInp.focus(),50);
+  const inp=document.getElementById("ob-name-inp");
+  inp.addEventListener("input",updateOBConfirm);
+  inp.addEventListener("keydown",e=>{if(e.key==="Enter")confirmOB();if(e.key==="Escape")closeModal();});
+  setTimeout(()=>inp.focus(),50);
 }
 
 function switchTab(tab){
   const isName=tab==="name";
-  document.getElementById("tab-name").classList.toggle("active",isName);
-  document.getElementById("tab-vibe").classList.toggle("active",!isName);
-  document.getElementById("tab-name").setAttribute("aria-selected",isName);
-  document.getElementById("tab-vibe").setAttribute("aria-selected",!isName);
-  document.getElementById("panel-name").classList.toggle("active",isName);
-  document.getElementById("panel-vibe").classList.toggle("active",!isName);
+  ["tab-name","tab-vibe"].forEach((id,idx)=>{
+    const active=(idx===0)===isName;
+    document.getElementById(id).classList.toggle("active",active);
+    document.getElementById(id).setAttribute("aria-selected",active);
+  });
+  ["panel-name","panel-vibe"].forEach((id,idx)=>{
+    document.getElementById(id).classList.toggle("active",(idx===0)===isName);
+  });
   updateOBConfirm();
-  if(isName) setTimeout(()=>document.getElementById("ob-name-inp").focus(),50);
-  else setTimeout(()=>document.getElementById("ob-cuisine").focus(),50);
+  setTimeout(()=>document.getElementById(isName?"ob-name-inp":"ob-cuisine").focus(),50);
 }
 
 function updateVibePreview(){
   const cuisine=document.getElementById("ob-cuisine").value;
   const format=document.getElementById("ob-format").value;
   const prev=document.getElementById("vibe-preview");
-  if(!cuisine&&!format){
-    prev.innerHTML=`<span class="vibe-placeholder">Choose cuisine and format above</span>`;
-  } else {
-    const cObj=CUISINES.find(c=>c.label===cuisine);
-    const fObj=FORMATS.find(f=>f.label===format);
-    const em=(cObj||fObj||{}).e||"🍽️";
-    const txt=[format,cuisine].filter(Boolean).join(" · ");
-    prev.innerHTML=`<span class="vibe-em" aria-hidden="true">${em}</span><span>${esc(txt)}</span>`;
-  }
+  if(!cuisine&&!format){prev.innerHTML=`<span class="vibe-placeholder">Choose cuisine and/or format above</span>`;return;}
+  const cObj=CUISINES.find(c=>c.label===cuisine);
+  const fObj=FORMATS.find(f=>f.label===format);
+  const em=(cObj||fObj||{}).e||"🍽️";
+  prev.innerHTML=`<span class="vibe-em" aria-hidden="true">${em}</span><span>${esc([format,cuisine].filter(Boolean).join(" · "))}</span>`;
   updateOBConfirm();
 }
 
 function updateOBConfirm(){
   const nameActive=document.getElementById("panel-name").classList.contains("active");
-  let ok=false;
-  if(nameActive){
-    const v=document.getElementById("ob-name-inp").value.trim();
-    ok=v.length>=2;
-  } else {
-    const c=document.getElementById("ob-cuisine").value;
-    const f=document.getElementById("ob-format").value;
-    ok=!!(c||f);
-  }
+  const ok=nameActive
+    ? document.getElementById("ob-name-inp").value.trim().length>=2
+    : !!(document.getElementById("ob-cuisine").value||document.getElementById("ob-format").value);
   document.getElementById("ob-ok").disabled=!ok;
 }
 
@@ -438,18 +422,28 @@ function confirmAbandon(){
 
 function closeModal(){document.getElementById("modal-area").innerHTML="";}
 function advance(){curIdx++;if(curIdx>=draftOrder.length){showResults();}else{renderDraft();}}
-function cityName(n){return "Welcome to "+n.trim().split(" ")[0]+" "+SUFFIXES[Math.floor(Math.random()*SUFFIXES.length)];}
+
+function splitCityName(playerName){
+  const first=playerName.trim().split(" ")[0];
+  const suffix=SUFFIXES[Math.floor(Math.random()*SUFFIXES.length)];
+  return {first,suffix};
+}
 
 function showResults(){
   showScreen("screen-results");
   const seen=new Set();
   const uniq=draftOrder.filter(x=>{if(seen.has(x))return false;seen.add(x);return true;});
   document.getElementById("results-grid").innerHTML=uniq.map(pi=>{
-    const city=cityName(players[pi]);
+    const {first,suffix}=splitCityName(players[pi]);
+    const fullCity=`Welcome to ${first} ${suffix}`;
     return `<div class="city-card">
-      <div class="city-sign" aria-label="${esc(city)}">
+      <div class="city-sign" aria-label="${esc(fullCity)}">
         <div class="sign-top">★ population: you ★</div>
-        <div class="sign-inner"><div class="sign-name">${esc(city)}</div></div>
+        <div class="sign-inner">
+          <span class="sign-line sm">Welcome to</span>
+          <span class="sign-line md">${esc(first)}</span>
+          <span class="sign-line lg">${esc(suffix)}</span>
+        </div>
       </div>
       <div class="player-lbl">${esc(players[pi])}</div>
       <div>${picks[pi].map(r=>`<div class="pick-row">
